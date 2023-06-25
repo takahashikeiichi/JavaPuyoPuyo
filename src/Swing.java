@@ -17,6 +17,8 @@ public class Swing
         frame.setTitle(title);
         frame.setSize(displaySizeX, displaySizeY);
         frame.setVisible(true);
+        // ×印を押すとアプリを落とす
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
     
