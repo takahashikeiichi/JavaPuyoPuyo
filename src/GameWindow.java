@@ -14,15 +14,19 @@ public class GameWindow extends JFrame
     /**
      * GUIを生成
      * @param title ウインドウのタイトル
+     * @param width 
+     * @param height
      */
-    public GameWindow(String title)
+    public GameWindow(String title, int width, int height)
     {
         setTitle(title);
         setVisible(true);
+        setSize(width, height);
         // ×印を押すとアプリを落とす
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /*
     public void DrawGraphic(String fileName)
     {
         JPanel panel = new JPanel();
@@ -41,4 +45,5 @@ public class GameWindow extends JFrame
         Container contentPane = getContentPane();
         contentPane.add(panel, BorderLayout.CENTER);
     }
+    */
 }

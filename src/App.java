@@ -17,17 +17,18 @@ public class App
         System.out.println("Hello, World!");
 
         // GUI生成
-        GameWindow gameWindow = new GameWindow(TITLE);
-        gameWindow.DrawGraphic("img\\PuyoGreen.png");
-
-        // 画像表示前にサイズを設定すると画像が表示されない(実行後のウィンドウのサイズを変更すると表示される)
-        // 本当はGameWindowのコンストラクタで変更したい
-        gameWindow.setSize(DISPLAY_WIDTH, DISPLAY_HEIGHT);
+        GameWindow gameWindow = new GameWindow(TITLE, DISPLAY_WIDTH, DISPLAY_HEIGHT);
+        DrawPanel drawPanel = new DrawPanel();
+        gameWindow.add(drawPanel);
+        //gameWindow.DrawGraphic("img\\PuyoGreen.png");
         
         //DrawPanel drawPanel = new DrawPanel();
         //JLabel label = drawPanel.CreateGraphics("PuyoGreen.png");
         //drawPanel.Draw(label);
 
         //gameWindow.add(drawPanel);
+
+        PuyoGameManager gameManager = PuyoGameManager.getInstance();
+        gameManager.start(drawPanel);
     }
 }
