@@ -17,13 +17,12 @@ public class DrawPanel extends JPanel
     
     public void paintComponent(Graphics g)
     {
-        Image img = Toolkit.getDefaultToolkit().getImage("img\\PuyoGreen.png");
         super.paintComponent(g);
 
         DrawManager drawManager = DrawManager.getInstance();
         for(DrawManager.DrawData drawData: drawManager.getDrawList())
         {
-            g.drawImage(drawData.getImage(), drawData.getX(), drawData.getY(), drawData.width(), drawData.height(), this);
+            g.drawImage(drawData.getImage(), drawData.getX(), drawData.getY(), drawData.getWidth(), drawData.getHeight(), this);
         }
 
         //g.drawImage(img, 0, 0, this);

@@ -15,8 +15,9 @@ public class PuyoGameManager extends GameManager
     public void start(DrawPanel drawPanel)
     {
         // ゲームの初期配置を行う
-        insertGameObject(new Puyo(Puyo.Color.Green));
-        insertGameObject(new Puyo(Puyo.Color.Blue));
+        insertGameObject(new ObjMap());      
+        insertGameObject(new Puyo(32,0, Puyo.Color.Green));
+        insertGameObject(new Puyo(64,0,Puyo.Color.Blue));
 
         super.start(drawPanel);
     }

@@ -19,8 +19,8 @@ public class DrawManager
         public Image getImage() { return image; }
         public int getX() { return x; }
         public int getY() { return y; }
-        public int width() { return width; }
-        public int height() { return height; }
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
 
         public DrawData(Image image, int x, int y, int width, int height)
         {
@@ -38,7 +38,8 @@ public class DrawManager
         PuyoBlue,
         PuyoRed,
         PuyoYellow,
-        Batu
+        Cross,
+        Frame
     }
 
     private static DrawManager instance = null;
@@ -51,7 +52,8 @@ public class DrawManager
         imageDic.put(GraphicsId.PuyoBlue, Toolkit.getDefaultToolkit().getImage("img\\PuyoBlue.png"));
         imageDic.put(GraphicsId.PuyoRed, Toolkit.getDefaultToolkit().getImage("img\\PuyoRed.png"));
         imageDic.put(GraphicsId.PuyoYellow, Toolkit.getDefaultToolkit().getImage("img\\PuyoYellow.png"));
-        imageDic.put(GraphicsId.Batu, Toolkit.getDefaultToolkit().getImage("img\\Batu.png"));
+        imageDic.put(GraphicsId.Cross, Toolkit.getDefaultToolkit().getImage("img\\cross.png"));
+        imageDic.put(GraphicsId.Frame, Toolkit.getDefaultToolkit().getImage("img\\frame.png"));
     }
 
     public static DrawManager getInstance()
