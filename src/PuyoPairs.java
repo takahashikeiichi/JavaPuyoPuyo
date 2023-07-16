@@ -41,12 +41,14 @@ public class PuyoPairs extends GameObject implements KeyInput
                 // 左に移動
                 if(puyo2 == null) {return;}
                 puyo1.setPosX(puyo1.getPosX() - 32);
+                puyo2.setPosX(puyo2.getPosX() - 32);
                 break;
             case KeyEvent.VK_RIGHT:
                 // 右キー
                 // 右に移動
                 if(puyo2 == null) {return;}
                 puyo1.setPosX(puyo1.getPosX() + 32);
+                puyo2.setPosX(puyo2.getPosX() + 32);
                 break;
             case KeyEvent.VK_DOWN:
                 // 下キー
