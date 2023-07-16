@@ -36,7 +36,8 @@ public class GameManager
 
             try
             {
-                Thread.sleep((long)500);
+                // 60FPS
+                Thread.sleep((long)1000 / 60);
             }
             catch(InterruptedException e){
                 e.printStackTrace();
