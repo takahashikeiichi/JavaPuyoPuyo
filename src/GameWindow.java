@@ -35,42 +35,11 @@ public class GameWindow extends JFrame implements KeyListener
 	public void keyPressed(KeyEvent e)
     {
         inputManager.keyPressed(e);
-
-		switch ( e.getKeyCode() )
-        {
-		case KeyEvent.VK_UP:
-			//上キー
-			System.out.println("上が押されました");
-			break;
-		case KeyEvent.VK_SPACE:
-			//スペースキー
-			System.out.println("スペースが押されました");
-			break;
-		case KeyEvent.VK_ENTER:
-			//エンターキー
-			System.out.println("Enterが押されました");
-			break;
-		}
 	}
  
 	@Override
 	public void keyReleased(KeyEvent e)
     {
         inputManager.keyReleased(e);
-		switch ( e.getKeyCode() )
-        {
-		case KeyEvent.VK_UP:
-			//上キー
-			System.out.println("上が離されました");
-			break;
-		case KeyEvent.VK_SPACE:
-			//スペースキー
-			System.out.println("スペースが離されました");
-			break;
-		case KeyEvent.VK_ENTER:
-			//エンターキー
-			System.out.println("Enterが離されました");
-			break;
-		}
 	}
 }

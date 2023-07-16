@@ -13,6 +13,7 @@ public class Puyo extends GameObject implements KeyInput
     private int height = 32;
     private DrawManager drawManager = DrawManager.getInstance();
     private InputManager inputManager = InputManager.getInstance();
+    private boolean isDown = false;
     /**
      * ぷよの色の種類
      */
@@ -50,8 +51,11 @@ public class Puyo extends GameObject implements KeyInput
 
     public void update()
     {
-        // 落下処理
-        //posY += speed;
+        if(isDown)
+        {
+            // 落下処理
+            posY += speed;
+        }
     }
 
     /**
@@ -76,17 +80,22 @@ public class Puyo extends GameObject implements KeyInput
         }
     }
 
+    public void SetIsDown(boolean isDown)
+    {
+        this.isDown = isDown;
+    }
+
     public void keyPressed(KeyEvent e)
     {
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_LEFT:
                 // 左キー
-                posX -= width;
+                //posX -= width;
                 break;
             case KeyEvent.VK_RIGHT:
                 // 右キー
-                posX += width;
+                //posX += width;
                 break;
             case KeyEvent.VK_DOWN:
                 // 下キー
