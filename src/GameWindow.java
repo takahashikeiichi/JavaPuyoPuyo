@@ -1,16 +1,14 @@
-import java.awt.BorderLayout;
-import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  * GUIゲーム画面
  */
-public class GameWindow extends JFrame
+public class GameWindow extends JFrame implements KeyListener
 {
+    InputManager inputManager = InputManager.getInstance();
     /**
      * GUIを生成
      * @param title ウインドウのタイトル
@@ -24,26 +22,55 @@ public class GameWindow extends JFrame
         setSize(width, height);
         // ×印を押すとアプリを落とす
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addKeyListener(this);
     }
 
-    /*
-    public void DrawGraphic(String fileName)
+    @Override
+	public void keyTyped(KeyEvent e)
     {
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        //JLabel label = new JLabel("Name");
-        //JTextField text = new JTextField(20);
-        //panel.add(label);
-        //panel.add(text);
+		//使用しないので空にしておきます。
+	}
+ 
+	@Override
+	public void keyPressed(KeyEvent e)
+    {
+        inputManager.keyPressed(e);
 
-        ImageIcon icon = new ImageIcon(fileName);
-        JLabel label = new JLabel(icon);
-        panel.add(label);
-
-        label.setBounds(0, 0, 200, 200);
-
-        Container contentPane = getContentPane();
-        contentPane.add(panel, BorderLayout.CENTER);
-    }
-    */
+		switch ( e.getKeyCode() )
+        {
+		case KeyEvent.VK_UP:
+			//上キー
+			System.out.println("上が押されました");
+			break;
+		case KeyEvent.VK_SPACE:
+			//スペースキー
+			System.out.println("スペースが押されました");
+			break;
+		case KeyEvent.VK_ENTER:
+			//エンターキー
+			System.out.println("Enterが押されました");
+			break;
+		}
+	}
+ 
+	@Override
+	public void keyReleased(KeyEvent e)
+    {
+        inputManager.keyReleased(e);
+		switch ( e.getKeyCode() )
+        {
+		case KeyEvent.VK_UP:
+			//上キー
+			System.out.println("上が離されました");
+			break;
+		case KeyEvent.VK_SPACE:
+			//スペースキー
+			System.out.println("スペースが離されました");
+			break;
+		case KeyEvent.VK_ENTER:
+			//エンターキー
+			System.out.println("Enterが離されました");
+			break;
+		}
+	}
 }

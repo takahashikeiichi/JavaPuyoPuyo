@@ -34,22 +34,27 @@ public class PuyoCreator extends GameObject
     {
         if(First1Puyo == null)
         {
-            Puyo.Color puyoColor = RandomPuyoColor();
-            if(puyoColor != null)
-            {
-                First1Puyo = new Puyo(posX + 16, posY + 16, puyoColor);
-                gameManager.insertGameObject(First1Puyo);
-            }
+            CreateStockPuyo( posX, posY + 10);
         }
 
         if(First2Puyo == null)
         {
-            //Puyo.Color puyoColor = 
+            CreateStockPuyo( posX, posY + 10 + 32 * 1);
+        }
+
+        if(Second1Puyo == null)
+        {
+            CreateStockPuyo( posX, posY + 10 + 32 * 2 + 16);
+        }
+
+        if(Second2Puyo == null)
+        {
+            CreateStockPuyo( posX, posY + 10 + 32 * 3 + 16);
         }
     }
 
     /** 次に落ちるぷよを作成する */
-    private void CreateStockPuyo(Puyo puyo, float posX, float posY)
+    private void CreateStockPuyo(float posX, float posY)
     {
         Puyo.Color puyoColor = RandomPuyoColor();
         if(puyoColor != null)
