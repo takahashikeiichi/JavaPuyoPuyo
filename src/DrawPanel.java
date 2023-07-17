@@ -25,9 +25,6 @@ public class DrawPanel extends JPanel
             g.drawImage(drawData.getImage(), drawData.getX(), drawData.getY(), drawData.getWidth(), drawData.getHeight(), this);
         }
 
-        //g.drawImage(img, 0, 0, this);
-        //g.drawImage(img, 100, 100, 100, 100, this);
-
         drawManager.clear();
     }
 }

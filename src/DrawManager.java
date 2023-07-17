@@ -1,5 +1,4 @@
 import java.awt.Image;
-import java.awt.List;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.HashMap;

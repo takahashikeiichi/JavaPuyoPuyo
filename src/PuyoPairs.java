@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.awt.Point;
 
 public class PuyoPairs extends GameObject implements KeyInput
 {
@@ -26,7 +27,51 @@ public class PuyoPairs extends GameObject implements KeyInput
 
     public void update()
     {
-        //objMap.get(puyo1.posX, puyo1.posY);
+        Point puyo1MapPos = objMap.getMap(puyo1.posX, puyo1.posY);
+        if(objMap.IsOutsideRange(puyo1MapPos.x, puyo1MapPos.y + 1)
+        || objMap.PuyoExists(puyo1MapPos.x, puyo1MapPos.y + 1))
+        {
+            if(puyo1.getIsDown())
+            {
+                objMap.setPuyo(puyo1, puyo1MapPos.x, puyo1MapPos.y);
+            }
+
+            puyo1.setIsDown(false);
+        }
+
+        Point puyo2MapPos = objMap.getMap(puyo2.posX, puyo2.posY);
+        if(objMap.IsOutsideRange(puyo2MapPos.x, puyo2MapPos.y + 1)
+        || objMap.PuyoExists(puyo2MapPos.x, puyo2MapPos.y + 1))
+        {
+            if(puyo2.getIsDown())
+            {
+                objMap.setPuyo(puyo2, puyo2MapPos.x, puyo2MapPos.y);
+            }
+
+            puyo2.setIsDown(false);
+        }
+
+        if(!puyo1.getIsDown() && !puyo2.getIsDown())
+        {
+            int a = 0;
+        }
+    }
+
+    private boolean confirmMovable(float posX, float posY)
+    {
+        Point puyoMapPos = objMap.getMap(posX, posY);
+        if(objMap.IsOutsideRange(puyoMapPos.x, puyoMapPos.y))
+        {
+            // 範囲外
+            return false;
+        }
+        
+        if(objMap.PuyoExists(puyoMapPos.x, puyoMapPos.y))
+        {
+            // ぷよがすでにある
+            return false;
+        }
+        return true;
     }
 
     public void draw() {}
@@ -40,8 +85,14 @@ public class PuyoPairs extends GameObject implements KeyInput
                 // 左キー
                 // 左に移動
                 if(puyo2 == null) {return;}
-                puyo1.setPosX(puyo1.getPosX() - 32);
-                puyo2.setPosX(puyo2.getPosX() - 32);
+                if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY))
+                {
+                    if(confirmMovable(puyo2.posX - objMap.OBJECT_WIDTH, puyo2.posY))
+                    {
+                        puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
+                        puyo2.setPosX(puyo2.getPosX() - objMap.OBJECT_WIDTH);
+                    }
+                }
                 break;
             case KeyEvent.VK_RIGHT:
                 // 右キー

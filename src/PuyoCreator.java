@@ -86,7 +86,7 @@ public class PuyoCreator extends GameObject
             // ぷよの初期位置に移動させる
             first1Puyo.setPosX(objMap.posX + 32 * 2);
             first1Puyo.setPosY(objMap.posY - 32);
-            first1Puyo.SetIsDown(true);
+            first1Puyo.setIsDown(true);
             first1Puyo = second1Puyo;
             second1Puyo = null;
         }
@@ -99,7 +99,7 @@ public class PuyoCreator extends GameObject
             }
             first2Puyo.setPosX(objMap.posX + 32 * 2);
             first2Puyo.setPosY(objMap.posY);
-            first2Puyo.SetIsDown(true);
+            first2Puyo.setIsDown(true);
             first2Puyo = second2Puyo;
             second2Puyo = null;
         }

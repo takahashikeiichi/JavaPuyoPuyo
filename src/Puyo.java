@@ -80,7 +80,12 @@ public class Puyo extends GameObject implements KeyInput
         }
     }
 
-    public void SetIsDown(boolean isDown)
+    public boolean getIsDown()
+    {
+        return isDown;
+    }
+
+    public void setIsDown(boolean isDown)
     {
         this.isDown = isDown;
     }

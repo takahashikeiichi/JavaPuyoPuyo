@@ -20,13 +20,6 @@ public class App
         GameWindow gameWindow = new GameWindow(TITLE, DISPLAY_WIDTH, DISPLAY_HEIGHT);
         DrawPanel drawPanel = new DrawPanel();
         gameWindow.add(drawPanel);
-        //gameWindow.DrawGraphic("img\\PuyoGreen.png");
-        
-        //DrawPanel drawPanel = new DrawPanel();
-        //JLabel label = drawPanel.CreateGraphics("PuyoGreen.png");
-        //drawPanel.Draw(label);
-
-        //gameWindow.add(drawPanel);
 
         PuyoGameManager gameManager = PuyoGameManager.getInstance();
         gameManager.start(drawPanel);

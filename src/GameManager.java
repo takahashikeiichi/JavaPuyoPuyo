@@ -62,7 +62,7 @@ public class GameManager
 
     /**
      * ゲームオブジェクトを追加する
-     * obj ゲームオブジェクト
+     * @param obj ゲームオブジェクト
      */
     public void insertGameObject(GameObject obj)
     {
