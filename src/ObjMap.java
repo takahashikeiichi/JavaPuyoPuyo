@@ -1,15 +1,17 @@
 import java.awt.Point;
 
 /**
- * ぷよぷよのゲーム情報
+ * ぷよぷよのマップ情報
  */
 public class ObjMap extends GameObject
 {
     public final int OBJECT_WIDTH = 32;
     public final int OBJECT_HEIGHT = 32;
+    // ぷよが落ちているときに横にあるぷよにかさって配置できる不具合対応
+    public final float OBJECT_COLLISION_OFFSET_HEIGHT = (float)OBJECT_HEIGHT - 0.5f;
     private final int MAP_X_NUM = 6;
     private final int MAP_Y_NUM = 12;
-    private Puyo[] map = new Puyo[MAP_X_NUM * MAP_Y_NUM]; 
+    private Puyo[] map = new Puyo[MAP_X_NUM * MAP_Y_NUM];
 
     private DrawManager drawManager = DrawManager.getInstance();
     private GameManager gameManager = GameManager.getInstance();
@@ -29,10 +31,10 @@ public class ObjMap extends GameObject
         puyoCreator.CreatePuyo();
     }
 
-    /** ぷよ移動後のマップ更新 */
-    private void updateMap()
+    /** ぷよ移動後の更新処理 */
+    public void UpdateMap()
     {
-
+        puyoCreator.CreatePuyo();
     }
 
     public void setPuyo(Puyo puyo, int x, int y)
@@ -53,11 +55,11 @@ public class ObjMap extends GameObject
         int mapY = 0;
         float x = posX - this.posX;
         float y = posY - this.posY;
-        if(posX != 0.0f)
+        if(x != 0.0f)
         {
             mapX = (int)x / OBJECT_WIDTH;
         }
-        if(posY != 0.0f)
+        if(y != 0.0f)
         {
             mapY = (int)y / OBJECT_HEIGHT;
         }

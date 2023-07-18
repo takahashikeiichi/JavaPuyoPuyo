@@ -28,8 +28,10 @@ public class GameManager
         while(!isExit)
         {
             drawPanel.repaint();
-            for(GameObject obj : gameObjectList)
+            //for(GameObject obj : gameObjectList)
+            for(int i = 0; i < gameObjectList.size(); ++i)
             {
+                GameObject obj = gameObjectList.get(i);
                 obj.update();
                 obj.draw();
             }

@@ -1,13 +1,6 @@
-import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.JPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  * 描画を行うパネル

@@ -1,18 +1,14 @@
-import java.awt.RenderingHints.Key;
-import java.awt.event.KeyEvent;
 import java.util.EnumSet;
 
 /**
  * ぷよオブジェクト
  */
-public class Puyo extends GameObject implements KeyInput
+public class Puyo extends GameObject
 {
-    //private float speed = 32.0f;
     private float speed = 1.0f;
     private int width = 32;
     private int height = 32;
     private DrawManager drawManager = DrawManager.getInstance();
-    private InputManager inputManager = InputManager.getInstance();
     private boolean isDown = false;
     /**
      * ぷよの色の種類
@@ -45,8 +41,6 @@ public class Puyo extends GameObject implements KeyInput
         this.posX = posX;
         this.posY = posY;
         this.color = color;
-
-        inputManager.addKeyInput(this);
     }
 
     public void update()
@@ -80,6 +74,11 @@ public class Puyo extends GameObject implements KeyInput
         }
     }
 
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
     public boolean getIsDown()
     {
         return isDown;
@@ -89,30 +88,4 @@ public class Puyo extends GameObject implements KeyInput
     {
         this.isDown = isDown;
     }
-
-    public void keyPressed(KeyEvent e)
-    {
-        switch(e.getKeyCode())
-        {
-            case KeyEvent.VK_LEFT:
-                // 左キー
-                //posX -= width;
-                break;
-            case KeyEvent.VK_RIGHT:
-                // 右キー
-                //posX += width;
-                break;
-            case KeyEvent.VK_DOWN:
-                // 下キー
-                break;
-            case KeyEvent.VK_A:
-                // Aキー
-                break;
-            case KeyEvent.VK_S:
-                // Sキー
-                break;
-        }
-    }
-
-    public void keyReleased(KeyEvent e){}
 }
