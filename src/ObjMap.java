@@ -68,6 +68,7 @@ public class ObjMap extends GameObject
                         deleteMapPuyo(deletePuyoPos.x, deletePuyoPos.y);
                     }
                 }
+                deletePuyoPosList.clear();
             }
         }
     }
