@@ -28,6 +28,7 @@ public class PuyoPairs extends GameObject implements KeyInput
 
     public void update()
     {
+        /*
         Point puyo1MapPos = objMap.getMap(puyo1.posX, puyo1.posY);
         if(objMap.IsOutsideRange(puyo1MapPos.x, puyo1MapPos.y + 1)
         || objMap.PuyoExists(puyo1MapPos.x, puyo1MapPos.y + 1))
@@ -51,6 +52,7 @@ public class PuyoPairs extends GameObject implements KeyInput
 
             puyo2.setIsDown(false);
         }
+        */
 
         if(!puyo1.getIsDown() && !puyo2.getIsDown())
         {
@@ -81,13 +83,13 @@ public class PuyoPairs extends GameObject implements KeyInput
 
     public void keyPressed(KeyEvent e)
     {
-        if(puyo1 == null) {return;}
+        if(puyo1 == null || !puyo1.getIsDown()) {return;}
+        if(puyo2 == null || !puyo2.getIsDown()) {return;}
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_LEFT:
                 // 左キー
                 // 左に移動
-                if(puyo2 == null) {return;}
                 if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                 {
                     if(confirmMovable(puyo2.posX - objMap.OBJECT_WIDTH, puyo2.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
@@ -100,7 +102,6 @@ public class PuyoPairs extends GameObject implements KeyInput
             case KeyEvent.VK_RIGHT:
                 // 右キー
                 // 右に移動
-                if(puyo2 == null) {return;}
                 if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                 {
                     if(confirmMovable(puyo2.posX + objMap.OBJECT_WIDTH, puyo2.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
@@ -114,7 +115,6 @@ public class PuyoPairs extends GameObject implements KeyInput
             case KeyEvent.VK_DOWN:
                 // 下キー
                 // 落下速度UP
-                if(puyo2 == null) {return;}
                 puyo1.setSpeed(gameManager.HIGH_FALLING_SPPED);
                 puyo2.setSpeed(gameManager.HIGH_FALLING_SPPED);
                 break;
@@ -201,11 +201,11 @@ public class PuyoPairs extends GameObject implements KeyInput
     public void keyReleased(KeyEvent e)
     {
         if(puyo1 == null) {return;}
+        if(puyo2 == null) {return;}
         switch(e.getKeyCode())
         {
             case KeyEvent.VK_DOWN:
                 // 下キー
-                if(puyo2 == null) {return;}
                 // 落下速度DOWN
                 puyo1.setSpeed(gameManager.NORMAL_FALLING_SPPED);
                 puyo2.setSpeed(gameManager.NORMAL_FALLING_SPPED);

@@ -1,3 +1,4 @@
+import java.awt.Point;
 import java.util.EnumSet;
 
 /**
@@ -10,6 +11,7 @@ public class Puyo extends GameObject
     private int height = 32;
     private DrawManager drawManager = DrawManager.getInstance();
     private boolean isDown = false;
+    private ObjMap objMap = null;
     /**
      * ぷよの色の種類
      */
@@ -35,9 +37,10 @@ public class Puyo extends GameObject
 
     private Color color;
 
-    public Puyo(float posX, float posY, Color color)
+    public Puyo(ObjMap map, float posX, float posY, Color color)
     {
         objectType = ObjectType.Puyo;
+        this.objMap = map;
         this.posX = posX;
         this.posY = posY;
         this.color = color;
@@ -49,6 +52,27 @@ public class Puyo extends GameObject
         {
             // 落下処理
             posY += speed;
+        }
+
+        Point puyo1MapPos = objMap.getMap(posX, posY);
+        if(objMap.IsOutsideRange(puyo1MapPos.x, puyo1MapPos.y + 1)
+        || objMap.PuyoExists(puyo1MapPos.x, puyo1MapPos.y + 1))
+        {
+            if(getIsDown())
+            {
+                objMap.setPuyo(this, puyo1MapPos.x, puyo1MapPos.y);
+            }
+
+            setIsDown(false);
+        }
+        else
+        {
+            if(!getIsDown())
+            {
+                objMap.setPuyo(null, puyo1MapPos.x, puyo1MapPos.y);
+            }
+
+            setIsDown(true);
         }
     }
 
@@ -72,6 +96,11 @@ public class Puyo extends GameObject
                 drawManager.drawImage(DrawManager.GraphicsId.PuyoYellow, (int)posX, (int)posY, width, height);
                 break;
         }
+    }
+
+    public Color getPuyoColor()
+    {
+        return color;
     }
 
     public void setSpeed(float speed)

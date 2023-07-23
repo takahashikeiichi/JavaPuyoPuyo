@@ -57,7 +57,7 @@ public class PuyoCreator extends GameObject
         Puyo.Color puyoColor = RandomPuyoColor();
         if(puyoColor != null)
         {
-            puyo = new Puyo(posX + 16, posY + 16, puyoColor);
+            puyo = new Puyo(objMap, posX + 16, posY + 16, puyoColor);
             gameManager.insertGameObject(puyo);
         }
         return puyo;
