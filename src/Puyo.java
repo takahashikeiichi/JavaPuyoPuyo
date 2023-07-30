@@ -10,6 +10,7 @@ public class Puyo extends GameObject
     private int width = 32;
     private int height = 32;
     private DrawManager drawManager = DrawManager.getInstance();
+    // ぷよが落ちているか
     private boolean isDown = false;
     private ObjMap objMap = null;
     /**
@@ -54,6 +55,11 @@ public class Puyo extends GameObject
             posY += speed;
         }
 
+        checkPuyoDown();
+    }
+
+    public void checkPuyoDown()
+    {
         Point puyo1MapPos = objMap.getMap(posX, posY);
         if(objMap.IsOutsideRange(puyo1MapPos.x, puyo1MapPos.y + 1)
         || objMap.PuyoExists(puyo1MapPos.x, puyo1MapPos.y + 1))

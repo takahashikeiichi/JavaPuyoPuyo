@@ -6,11 +6,12 @@ public abstract class GameObject
     /**オブジェクトの種類 */
     public enum ObjectType 
     {
+        None,
         Puyo,
         
     }
 
-    protected ObjectType objectType;
+    protected ObjectType objectType = ObjectType.None;
     public ObjectType getObjectType()
     {
         return objectType;

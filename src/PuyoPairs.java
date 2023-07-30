@@ -56,7 +56,7 @@ public class PuyoPairs extends GameObject implements KeyInput
 
         if(!puyo1.getIsDown() && !puyo2.getIsDown())
         {
-            objMap.UpdateMap();
+            objMap.updateMap();
             inputManager.removeKeyInput(this);
             gameManager.deleteGameObject(this);
         }

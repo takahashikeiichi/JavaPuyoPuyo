@@ -9,7 +9,7 @@ public class ObjMap extends GameObject
     private final int PUYO_DELETE_COUNT = 4;
     public final int OBJECT_WIDTH = 32;
     public final int OBJECT_HEIGHT = 32;
-    // ぷよが落ちているときに横にあるぷよにかさって配置できる不具合対応
+    // ぷよが落ちているときに横にあるぷよに重なって配置できる不具合対応
     public final float OBJECT_COLLISION_OFFSET_HEIGHT = (float)OBJECT_HEIGHT - 0.5f;
     private final int MAP_X_NUM = 6;
     private final int MAP_Y_NUM = 12;
@@ -18,6 +18,8 @@ public class ObjMap extends GameObject
     private DrawManager drawManager = DrawManager.getInstance();
     private GameManager gameManager = GameManager.getInstance();
     private PuyoCreator puyoCreator = null;
+    // ぷよが削除後の移動中か
+    private boolean isPuyoMovingAgain = false;
 
     public ObjMap()
     {
@@ -34,20 +36,39 @@ public class ObjMap extends GameObject
     }
 
     /** ぷよ移動後の更新処理 */
-    public void UpdateMap()
+    public void updateMap()
     {
         // ぷよを消す
-        checkDeletePuyo();
+        // ぷよが消えることでぷよが動く(動かない場合もあり)
+        isPuyoMovingAgain = checkDeletePuyo();
 
-        // 新しいぷよを出す
-        puyoCreator.CreatePuyo();
+        if(isPuyoMovingAgain)
+        {
+            for(Puyo puyo : map)
+            {
+                if(puyo == null)
+                {
+                    continue;
+                }
+
+                puyo.checkPuyoDown();
+            }
+        }
+
+        if(!isPuyoMovingAgain)
+        {
+            // 新しいぷよを出す
+            puyoCreator.CreatePuyo();
+        }
     }
 
     /** 削除するぷよを調べる */
-    private void checkDeletePuyo()
+    private boolean checkDeletePuyo()
     {
         ArrayList<Point> deletePuyoPosList = new ArrayList<>();
         Puyo puyo = null;
+        // ぷよを削除するか
+        boolean isDeletePuyo = false;
         for(int y = 0; y < MAP_Y_NUM; y++)
         {
             for(int x = 0; x < MAP_X_NUM; x++)
@@ -67,10 +88,12 @@ public class ObjMap extends GameObject
                         // 繋がったぷよを消す
                         deleteMapPuyo(deletePuyoPos.x, deletePuyoPos.y);
                     }
+                    isDeletePuyo = true;
                 }
                 deletePuyoPosList.clear();
             }
         }
+        return isDeletePuyo;
     }
 
     /** ぷよの繋がりから削除するぷよを調べる */
@@ -181,8 +204,36 @@ public class ObjMap extends GameObject
 
     public void update()
     {
-        
+        if(isPuyoMovingAgain)
+        {
+            if(hasAllPuyoFallen())
+            {
+                updateMap();
+            }
+        }
     }
+
+    /** 全てのぷよが落ちたか */
+    private boolean hasAllPuyoFallen()
+    {
+        var objects = gameManager.getGameObjects(ObjectType.Puyo);
+
+        for(var object : objects)
+        {
+            Puyo puyo = (Puyo)object;
+            if(puyo == null)
+            {
+                continue;
+            }
+
+            if(puyo.getIsDown())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     /**
      * 画像の表示を行う
