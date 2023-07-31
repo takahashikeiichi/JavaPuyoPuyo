@@ -42,6 +42,13 @@ public class ObjMap extends GameObject
         // ぷよが消えることでぷよが動く(動かない場合もあり)
         isPuyoMovingAgain = checkDeletePuyo();
 
+        // バツ印の所にぷよを設置するとゲームオーバー
+        if(map[2] != null)
+        {
+            // ゲームオーバー
+            return;
+        }
+
         if(isPuyoMovingAgain)
         {
             for(Puyo puyo : map)
