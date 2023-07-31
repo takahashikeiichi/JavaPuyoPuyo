@@ -159,6 +159,10 @@ public class ObjMap extends GameObject
             return;
         }
 
+        // ぷよの位置を修正する
+        puyo.setPosX(posX + x * OBJECT_WIDTH);
+        puyo.setPosY(posY + y * OBJECT_HEIGHT);
+
         map[y * MAP_X_NUM + x] = puyo;
     }
 
