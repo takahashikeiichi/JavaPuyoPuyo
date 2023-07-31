@@ -166,10 +166,12 @@ public class ObjMap extends GameObject
             return;
         }
 
-        // ぷよの位置を修正する
-        puyo.setPosX(posX + x * OBJECT_WIDTH);
-        puyo.setPosY(posY + y * OBJECT_HEIGHT);
-
+        if(puyo != null)
+        {
+            // ぷよの位置を修正する(ぷよを設置する場合のみ)
+            puyo.setPosX(posX + x * OBJECT_WIDTH);
+            puyo.setPosY(posY + y * OBJECT_HEIGHT);
+        }
         map[y * MAP_X_NUM + x] = puyo;
     }
 
