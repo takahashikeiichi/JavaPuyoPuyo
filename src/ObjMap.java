@@ -16,7 +16,7 @@ public class ObjMap extends GameObject
     private Puyo[] map = new Puyo[MAP_X_NUM * MAP_Y_NUM];
 
     private DrawManager drawManager = DrawManager.getInstance();
-    private GameManager gameManager = GameManager.getInstance();
+    private PuyoGameManager gameManager = PuyoGameManager.getInstance();
     private PuyoCreator puyoCreator = null;
     // ぷよが削除後の移動中か
     private boolean isPuyoMovingAgain = false;
@@ -171,6 +171,7 @@ public class ObjMap extends GameObject
             // ぷよの位置を修正する(ぷよを設置する場合のみ)
             puyo.setPosX(posX + x * OBJECT_WIDTH);
             puyo.setPosY(posY + y * OBJECT_HEIGHT);
+            puyo.setSpeed(gameManager.HIGH_FALLING_SPPED);
         }
         map[y * MAP_X_NUM + x] = puyo;
     }
