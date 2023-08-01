@@ -7,7 +7,7 @@ public class PuyoCreator extends GameObject
 {
     private ObjMap objMap;
     private DrawManager drawManager = DrawManager.getInstance();
-    private GameManager gameManager = GameManager.getInstance();
+    private PuyoGameManager gameManager = PuyoGameManager.getInstance();
     private int puyoTypeNum = 4;
 
     // ストックしている一つ目の上のぷよ(表示でいう上から一番目のぷよ)
@@ -57,7 +57,7 @@ public class PuyoCreator extends GameObject
         Puyo.Color puyoColor = RandomPuyoColor();
         if(puyoColor != null)
         {
-            puyo = new Puyo(objMap, posX + 16, posY + 16, puyoColor);
+            puyo = new Puyo(objMap, posX + 16, posY + 16, gameManager.NORMAL_FALLING_SPPED, puyoColor);
             gameManager.insertGameObject(puyo);
         }
         return puyo;

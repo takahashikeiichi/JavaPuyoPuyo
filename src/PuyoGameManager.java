@@ -2,8 +2,8 @@ public class PuyoGameManager extends GameManager
 {
     private PuyoGameManager() {}
 
-    public final float NORMAL_FALLING_SPPED = 1.0f;
-    public final float HIGH_FALLING_SPPED = 3.0f;
+    public final float NORMAL_FALLING_SPPED = 2.0f;
+    public final float HIGH_FALLING_SPPED = 5.0f;
 
     /** 自身のインスタンスを返す */
     public static PuyoGameManager getInstance()

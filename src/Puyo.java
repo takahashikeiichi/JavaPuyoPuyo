@@ -38,12 +38,13 @@ public class Puyo extends GameObject
 
     private Color color;
 
-    public Puyo(ObjMap map, float posX, float posY, Color color)
+    public Puyo(ObjMap map, float posX, float posY, float speed, Color color)
     {
         objectType = ObjectType.Puyo;
         this.objMap = map;
         this.posX = posX;
         this.posY = posY;
+        this.speed = speed;
         this.color = color;
     }
 
