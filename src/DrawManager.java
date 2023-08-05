@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/** 画像描画管理 */
 public class DrawManager 
 {
     /**描画に必要な情報 */
@@ -31,6 +32,7 @@ public class DrawManager
         }
     }
 
+    /** 画像識別用ID */
     public enum GraphicsId
     {
         PuyoGreen,
@@ -42,11 +44,14 @@ public class DrawManager
     }
 
     private static DrawManager instance = null;
+    /** 生成した画像情報を入れるディクショナリ */
     private Map<GraphicsId, Image> imageDic = new HashMap<GraphicsId, Image>();
+    /** ゲームに表示する画像情報を入れる配列 */
     private ArrayList<DrawData> drawList = new ArrayList<>();
 
     private DrawManager()
     {
+        // 使用したい画像を登録
         imageDic.put(GraphicsId.PuyoGreen, Toolkit.getDefaultToolkit().getImage("img\\PuyoGreen.png"));
         imageDic.put(GraphicsId.PuyoBlue, Toolkit.getDefaultToolkit().getImage("img\\PuyoBlue.png"));
         imageDic.put(GraphicsId.PuyoRed, Toolkit.getDefaultToolkit().getImage("img\\PuyoRed.png"));
@@ -74,6 +79,9 @@ public class DrawManager
         drawList.clear();
     }
 
+    /**
+     *  画像を表示させる GameObjectのDraw関数で呼ぶ 
+     */
     public void drawImage(GraphicsId id, int x, int y, int width, int height)
     {
         DrawData drawData = new DrawData(imageDic.get(id), x, y, width, height);

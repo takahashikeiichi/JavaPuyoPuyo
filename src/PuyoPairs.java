@@ -28,32 +28,6 @@ public class PuyoPairs extends GameObject implements KeyInput
 
     public void update()
     {
-        /*
-        Point puyo1MapPos = objMap.getMap(puyo1.posX, puyo1.posY);
-        if(objMap.IsOutsideRange(puyo1MapPos.x, puyo1MapPos.y + 1)
-        || objMap.PuyoExists(puyo1MapPos.x, puyo1MapPos.y + 1))
-        {
-            if(puyo1.getIsDown())
-            {
-                objMap.setPuyo(puyo1, puyo1MapPos.x, puyo1MapPos.y);
-            }
-
-            puyo1.setIsDown(false);
-        }
-
-        Point puyo2MapPos = objMap.getMap(puyo2.posX, puyo2.posY);
-        if(objMap.IsOutsideRange(puyo2MapPos.x, puyo2MapPos.y + 1)
-        || objMap.PuyoExists(puyo2MapPos.x, puyo2MapPos.y + 1))
-        {
-            if(puyo2.getIsDown())
-            {
-                objMap.setPuyo(puyo2, puyo2MapPos.x, puyo2MapPos.y);
-            }
-
-            puyo2.setIsDown(false);
-        }
-        */
-
         if(!puyo1.getIsDown() && !puyo2.getIsDown())
         {
             objMap.updateMap();

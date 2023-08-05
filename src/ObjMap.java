@@ -27,6 +27,7 @@ public class ObjMap extends GameObject
         posY = 32;
     }
 
+    /** 初期化 */
     public void init()
     {
         puyoCreator = new PuyoCreator(this, posX, posY);
@@ -49,6 +50,7 @@ public class ObjMap extends GameObject
             return;
         }
 
+        // ぷよが消えたことによる落下チェック
         if(isPuyoMovingAgain)
         {
             for(Puyo puyo : map)
@@ -87,6 +89,7 @@ public class ObjMap extends GameObject
                     continue;
                 }
 
+                // 再起関数で同色ぷよの数と情報を取得
                 int count = nearPuyoCounter(x, y, puyo.getPuyoColor(), deletePuyoPosList);
                 if(count >= PUYO_DELETE_COUNT)
                 {
@@ -158,6 +161,7 @@ public class ObjMap extends GameObject
         map[y * MAP_X_NUM + x] = null;
     }
 
+    /** ゲームマップにぷよを設置 */
     public void setPuyo(Puyo puyo, int x, int y)
     {
         if(IsOutsideRange(x, y))
@@ -195,6 +199,10 @@ public class ObjMap extends GameObject
         return new Point(mapX, mapY);
     }
 
+    /**
+     *  範囲外チェック 
+     * @return true:範囲外 false:範囲内
+     * */
     public boolean IsOutsideRange(int x, int y)
     {
         if(x < 0 || x >= MAP_X_NUM 

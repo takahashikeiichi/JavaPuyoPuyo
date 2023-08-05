@@ -1,12 +1,14 @@
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+/** キー入力受付用インターフェース */
 interface KeyInput
 {
     public void keyPressed(KeyEvent e);
     public void keyReleased(KeyEvent e);
 }
 
+/** 入力管理 */
 public class InputManager
 {
     private static InputManager instance = null;
@@ -23,21 +25,25 @@ public class InputManager
         return instance;
     }
 
+    /**　キー入力 登録されているイベントを呼び出す */
     public void keyPressed(KeyEvent e)
     {
         keyInputs.forEach(input -> input.keyPressed(e));
     }
 
+    /** キー離し　登録されているイベントを呼び出す */
     public void keyReleased(KeyEvent e)
     {
         keyInputs.forEach(input -> input.keyReleased(e));
     }
 
+    /** イベントを登録 */
     public void addKeyInput(KeyInput keyInput)
     {
         keyInputs.add(keyInput);
     }
 
+    /** イベント登録を解除 */
     public void removeKeyInput(KeyInput keyInput)
     {
         keyInputs.remove(keyInput);
