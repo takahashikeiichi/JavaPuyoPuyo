@@ -1,3 +1,4 @@
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JPanel;
@@ -20,11 +21,12 @@ public class DrawPanel extends JPanel
         }
 
         TextManager textManager = TextManager.getInstance();
-        //for(TextManager.)
-        //g.drawString(null, ALLBITS, ABORT);
-
-        //g.drawString(null, ALLBITS, ABORT);
-
+        for(TextManager.DrawData drawData: textManager.getDrawList())
+        {
+            g.setFont(new Font(drawData.getFontName(), Font.PLAIN, drawData.getSize()));
+            g.drawString(drawData.getText(), drawData.getX(),drawData.getY());
+        }
+        
         drawManager.clear();
     }
 }
