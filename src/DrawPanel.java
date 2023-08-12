@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
@@ -23,10 +24,12 @@ public class DrawPanel extends JPanel
         TextManager textManager = TextManager.getInstance();
         for(TextManager.DrawData drawData: textManager.getDrawList())
         {
-            g.setFont(new Font(drawData.getFontName(), Font.PLAIN, drawData.getSize()));
+            g.setFont(new Font(drawData.getFontName(), drawData.getStyle(), drawData.getSize()));
+            g.setColor(Color.BLUE);
             g.drawString(drawData.getText(), drawData.getX(),drawData.getY());
         }
         
         drawManager.clear();
+        textManager.clear();
     }
 }
