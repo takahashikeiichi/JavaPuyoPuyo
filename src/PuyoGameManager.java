@@ -1,3 +1,4 @@
+/** ぷよぷよゲームマネージャー */
 public class PuyoGameManager extends GameManager
 {
     private PuyoGameManager() {}
@@ -21,6 +22,9 @@ public class PuyoGameManager extends GameManager
         ObjMap objMap = new ObjMap();
         insertGameObject(objMap);
         objMap.init();
+
+        // 操作方法テキスト
+        
 
         super.start(drawPanel);
     }
