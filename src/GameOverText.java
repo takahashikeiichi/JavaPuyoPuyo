@@ -5,7 +5,7 @@ import java.awt.Font;
 public class GameOverText extends GameObject
 {
     private TextManager textManager = TextManager.getInstance();
-    private boolean isEnable = true;
+    private boolean isEnable = false;
     public void setEnable(boolean isEnable)
     {
         this.isEnable = isEnable;
