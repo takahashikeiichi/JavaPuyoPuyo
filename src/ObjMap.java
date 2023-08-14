@@ -19,14 +19,16 @@ public class ObjMap extends GameObject
     private PuyoGameManager gameManager = PuyoGameManager.getInstance();
     private PuyoCreator puyoCreator = null;
     private ChainText chainText = null;
+    private GameScoreText gameScoreText = null;
     // ぷよが削除後の移動中か
     private boolean isPuyoMovingAgain = false;
     private int chainNum = 0;
+    private int score = 0;
 
     public ObjMap()
     {
         posX = 32;
-        posY = 32;
+        posY = 82;
     }
 
     /** 初期化 */
@@ -36,8 +38,12 @@ public class ObjMap extends GameObject
         gameManager.insertGameObject(puyoCreator);
         puyoCreator.StockPuyo();
         puyoCreator.CreatePuyo();
-        chainText = new ChainText(40, 200);
+
+        chainText = new ChainText(40, 250);
         gameManager.insertGameObject(chainText);
+
+        gameScoreText = new GameScoreText();
+        gameManager.insertGameObject(gameScoreText);
     }
 
     /** ぷよ移動後の更新処理 */
@@ -103,6 +109,10 @@ public class ObjMap extends GameObject
                         deleteMapPuyo(deletePuyoPos.x, deletePuyoPos.y);
                     }
                     isDeletePuyo = true;
+
+                    // ぷよを削除によるスコア更新 
+                    // 連鎖数は更新前なので+1
+                    updateScore(count, chainNum + 1);
                 }
                 deletePuyoPosList.clear();
             }
@@ -120,6 +130,13 @@ public class ObjMap extends GameObject
         }
         
         return isDeletePuyo;
+    }
+
+    // 消したぷよからスコアを更新
+    private void updateScore(int deletePuyoCount, int chainNum)
+    {
+        score += deletePuyoCount * chainNum;
+        gameScoreText.setScore(score);
     }
 
     /** ぷよの繋がりから削除するぷよを調べる */

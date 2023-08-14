@@ -8,7 +8,7 @@ public class ControlText extends GameObject
     public ControlText()
     {
         posX = 50;
-        posY = 450;
+        posY = 500;
     }
 
     public void update()

@@ -7,7 +7,7 @@ public class App
     /** 画面幅 */
     private static final int DISPLAY_WIDTH = 300;
     /** 画面高さ */
-    private static final int DISPLAY_HEIGHT = 650;
+    private static final int DISPLAY_HEIGHT = 700;
     
     /**
      * メインメソッド
