@@ -18,13 +18,14 @@ public class PuyoGameManager extends GameManager
 
     public void start(DrawPanel drawPanel)
     {
-        // ゲームの初期配置を行う
+        // ゲームマップを生成
         ObjMap objMap = new ObjMap();
         insertGameObject(objMap);
         objMap.init();
 
         // 操作方法テキスト
-        
+        ControlText controlText = new ControlText();
+        insertGameObject(controlText);
 
         super.start(drawPanel);
     }
