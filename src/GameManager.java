@@ -28,6 +28,7 @@ public class GameManager
         while(!isExit)
         {
             drawPanel.repaint();
+            drawPanel.clearDrawList();
             //for(GameObject obj : gameObjectList)
             for(int i = 0; i < gameObjectList.size(); ++i)
             {
