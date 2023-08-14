@@ -20,6 +20,7 @@ public class ObjMap extends GameObject
     private PuyoCreator puyoCreator = null;
     private ChainText chainText = null;
     private GameScoreText gameScoreText = null;
+    private GameOverText gameOverText = null;
     // ぷよが削除後の移動中か
     private boolean isPuyoMovingAgain = false;
     private int chainNum = 0;
@@ -44,6 +45,9 @@ public class ObjMap extends GameObject
 
         gameScoreText = new GameScoreText();
         gameManager.insertGameObject(gameScoreText);
+
+        gameOverText = new GameOverText();
+        gameManager.insertGameObject(gameOverText);
     }
 
     /** ぷよ移動後の更新処理 */
@@ -56,7 +60,8 @@ public class ObjMap extends GameObject
         // バツ印の所にぷよを設置するとゲームオーバー
         if(map[2] != null)
         {
-            // ゲームオーバー
+            // ゲームオーバーテキスト表示
+            gameOverText.setEnable(true);
             return;
         }
 
