@@ -104,6 +104,18 @@ public class PuyoPairs extends GameObject implements KeyInput
                             puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
                             puyo1.setPosY(puyo1.getPosY() + objMap.OBJECT_HEIGHT);
                         }
+                        else if(confirmMovable(puyo2.posX + objMap.OBJECT_WIDTH, puyo2.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        {
+                            // 左端で左回転できないときは軸ぷよを反時計回りに移動する
+                            // |●        | ←の時に
+                            // |○        |
+
+                            // |         | ←にする
+                            // |●○       |
+                            puyo1move = Moving.Left;
+                            puyo2.setPosX(puyo2.getPosX() + objMap.OBJECT_WIDTH);
+                            puyo2.setPosY(puyo2.getPosY() - objMap.OBJECT_HEIGHT);
+                        }
                         break;
                     case Left:
                         if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
@@ -141,6 +153,17 @@ public class PuyoPairs extends GameObject implements KeyInput
                             puyo1move = Moving.Right;
                             puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
                             puyo1.setPosY(puyo1.getPosY() + objMap.OBJECT_HEIGHT);
+                        }
+                        else if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        {
+                            // |         ●| ←の時に
+                            // |        〇|
+
+                            // |          | ←にする
+                            // |       〇●|
+                            puyo1move = Moving.Right;
+                            puyo2.setPosX(puyo2.getPosX() - objMap.OBJECT_WIDTH);
+                            puyo2.setPosY(puyo2.getPosY() - objMap.OBJECT_HEIGHT);
                         }
                         break;
                     case Left:
