@@ -1,4 +1,8 @@
+package PuyoPuyo;
 import java.util.Random;
+
+import GameLibrary.DrawManager;
+import GameLibrary.GameObject;
 
 /**
  * ぷよの生成を行う
@@ -84,8 +88,8 @@ public class PuyoCreator extends GameObject
             }
 
             // ぷよの初期位置に移動させる
-            first1Puyo.setPosX(objMap.posX + 32 * 2);
-            first1Puyo.setPosY(objMap.posY - 32);
+            first1Puyo.setPosX(objMap.getPosX() + 32 * 2);
+            first1Puyo.setPosY(objMap.getPosY() - 32);
             first1Puyo.setIsDown(true);
             first1Puyo = second1Puyo;
             second1Puyo = null;
@@ -97,8 +101,8 @@ public class PuyoCreator extends GameObject
             {
                 second2Puyo.setPosY(first2Puyo.getPosY());
             }
-            first2Puyo.setPosX(objMap.posX + 32 * 2);
-            first2Puyo.setPosY(objMap.posY);
+            first2Puyo.setPosX(objMap.getPosX() + 32 * 2);
+            first2Puyo.setPosY(objMap.getPosY());
             first2Puyo.setIsDown(true);
             first2Puyo = second2Puyo;
             second2Puyo = null;

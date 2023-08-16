@@ -1,5 +1,9 @@
+package PuyoPuyo;
 import java.awt.Point;
 import java.util.EnumSet;
+
+import GameLibrary.DrawManager;
+import GameLibrary.GameObject;
 
 /**
  * ぷよオブジェクト

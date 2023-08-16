@@ -1,3 +1,4 @@
+package GameLibrary;
 /**
  * ゲームで使用するオブジェクト抽象クラス
  */

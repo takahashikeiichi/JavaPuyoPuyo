@@ -1,5 +1,9 @@
+package PuyoPuyo;
 import java.awt.Color;
 import java.awt.Font;
+
+import GameLibrary.GameObject;
+import GameLibrary.TextManager;
 
 /** ゲームスコアテキスト */
 public class GameScoreText extends GameObject

@@ -1,4 +1,10 @@
+package PuyoPuyo;
 import java.awt.event.KeyEvent;
+
+import GameLibrary.GameObject;
+import GameLibrary.InputManager;
+import GameLibrary.KeyInput;
+
 import java.awt.Point;
 
 public class PuyoPairs extends GameObject implements KeyInput
@@ -64,9 +70,9 @@ public class PuyoPairs extends GameObject implements KeyInput
             case KeyEvent.VK_LEFT:
                 // 左キー
                 // 左に移動
-                if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                 {
-                    if(confirmMovable(puyo2.posX - objMap.OBJECT_WIDTH, puyo2.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                    if(confirmMovable(puyo2.getPosX() - objMap.OBJECT_WIDTH, puyo2.getPosY() + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                     {
                         puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
                         puyo2.setPosX(puyo2.getPosX() - objMap.OBJECT_WIDTH);
@@ -76,9 +82,9 @@ public class PuyoPairs extends GameObject implements KeyInput
             case KeyEvent.VK_RIGHT:
                 // 右キー
                 // 右に移動
-                if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                if(confirmMovable(puyo1.getPosX() + objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                 {
-                    if(confirmMovable(puyo2.posX + objMap.OBJECT_WIDTH, puyo2.posY + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                    if(confirmMovable(puyo2.getPosX() + objMap.OBJECT_WIDTH, puyo2.getPosY() + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                     {
                         puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
                         puyo2.setPosX(puyo2.getPosX() + objMap.OBJECT_WIDTH);
@@ -98,13 +104,13 @@ public class PuyoPairs extends GameObject implements KeyInput
                 switch(puyo1move)
                 {
                     case Up:
-                        if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Left;
                             puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
                             puyo1.setPosY(puyo1.getPosY() + objMap.OBJECT_HEIGHT);
                         }
-                        else if(confirmMovable(puyo2.posX + objMap.OBJECT_WIDTH, puyo2.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        else if(confirmMovable(puyo2.getPosX() + objMap.OBJECT_WIDTH, puyo2.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             // 左端で左回転できないときは軸ぷよを反時計回りに移動する
                             // |●        | ←の時に
@@ -118,7 +124,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Left:
-                        if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() + objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Down;
                             puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
@@ -126,7 +132,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Down:
-                        if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() + objMap.OBJECT_WIDTH, puyo1.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Right;
                             puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
@@ -134,7 +140,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Right:
-                        if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Up;
                             puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
@@ -148,14 +154,15 @@ public class PuyoPairs extends GameObject implements KeyInput
                 switch(puyo1move)
                 {
                     case Up:
-                        if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() + objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Right;
                             puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
                             puyo1.setPosY(puyo1.getPosY() + objMap.OBJECT_HEIGHT);
                         }
-                        else if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        else if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
+                            // 右端で右回転できないときは軸ぷよを時計回りに移動する
                             // |         ●| ←の時に
                             // |        〇|
 
@@ -167,7 +174,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Left:
-                        if(confirmMovable(puyo1.posX + objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() + objMap.OBJECT_WIDTH, puyo1.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Up;
                             puyo1.setPosX(puyo1.getPosX() + objMap.OBJECT_WIDTH);
@@ -175,7 +182,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Down:
-                        if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() - objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Left;
                             puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);
@@ -183,7 +190,7 @@ public class PuyoPairs extends GameObject implements KeyInput
                         }
                         break;
                     case Right:
-                        if(confirmMovable(puyo1.posX - objMap.OBJECT_WIDTH, puyo1.posY + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
+                        if(confirmMovable(puyo1.getPosX() - objMap.OBJECT_WIDTH, puyo1.getPosY() + objMap.OBJECT_HEIGHT + objMap.OBJECT_COLLISION_OFFSET_HEIGHT))
                         {
                             puyo1move = Moving.Down;
                             puyo1.setPosX(puyo1.getPosX() - objMap.OBJECT_WIDTH);

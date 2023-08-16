@@ -1,4 +1,8 @@
+package PuyoPuyo;
 import java.awt.Font;
+
+import GameLibrary.GameObject;
+import GameLibrary.TextManager;
 
 /** 操作テキスト */
 public class ControlText extends GameObject

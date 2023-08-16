@@ -1,3 +1,7 @@
+package PuyoPuyo;
+import GameLibrary.DrawPanel;
+import GameLibrary.GameManager;
+
 /** ぷよぷよゲームマネージャー */
 public class PuyoGameManager extends GameManager
 {

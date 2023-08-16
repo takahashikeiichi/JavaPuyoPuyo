@@ -1,12 +1,6 @@
+package GameLibrary;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-/** キー入力受付用インターフェース */
-interface KeyInput
-{
-    public void keyPressed(KeyEvent e);
-    public void keyReleased(KeyEvent e);
-}
 
 /** 入力管理 */
 public class InputManager
