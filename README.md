@@ -51,6 +51,14 @@ drawImageメソッドを呼び出すと画像を表示できます。
         PuyoGameManager.java GameManagerクラス継承 このゲーム用
         PuyoPairs.java       ぷよが落ちてくるときのペアクラス
 
+■ゲーム遊び方(Windows版)
+1.javaをインストールして下さい。※javaをインストールされていない方のみ
+  URL : https://www.java.com/ja/download/
+2.Githubからソースコード一式をダウンロードしてください。
+  2.1 「<> Code▼」ボタンをクリック
+  2.2 「Download ZIP」ボタンをクリックするとダウンロード開始
+  2.3 ダウンロードしたzipファイルを解凍して下さい。
+3.GameStart.batをダブルクリックするとゲームが始まります。
 
 ■ゲームルール
 1.一人用です。
