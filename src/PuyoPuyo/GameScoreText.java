@@ -27,6 +27,12 @@ public class GameScoreText extends GameObject
         scoreText = "Score : " + interger.toString();
     } 
 
+    public void init()
+    {
+        score = 0;
+        setScore(score);
+    }
+
     public void update()
     {
 

@@ -38,6 +38,9 @@ public abstract class GameObject
         posY = y;
     }
 
+    /** オブジェクト初期化メソッド */
+    public abstract void init();
+
     /**オブジェクト更新メソッド */
     public abstract void update();
 

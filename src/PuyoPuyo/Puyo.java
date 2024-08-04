@@ -52,6 +52,11 @@ public class Puyo extends GameObject
         this.color = color;
     }
 
+    public void init()
+    {
+
+    }
+
     public void update()
     {
         if(isDown)

@@ -59,6 +59,8 @@ public class PuyoPairs extends GameObject implements KeyInput
         return true;
     }
 
+    public void init() {}
+
     public void draw() {}
 
     public void keyPressed(KeyEvent e)

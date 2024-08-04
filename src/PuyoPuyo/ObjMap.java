@@ -1,7 +1,8 @@
 package PuyoPuyo;
 import java.awt.Point;
 import java.util.ArrayList;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import GameLibrary.DrawManager;
 import GameLibrary.GameObject;
 
@@ -11,6 +12,7 @@ import GameLibrary.GameObject;
 public class ObjMap extends GameObject
 {
     private final int PUYO_DELETE_COUNT = 4;
+    private final int RETRYINTERVAL = 1000;
     public final int OBJECT_WIDTH = 32;
     public final int OBJECT_HEIGHT = 32;
     // ぷよが落ちているときに横にあるぷよに重なって配置できる不具合対応
@@ -25,6 +27,8 @@ public class ObjMap extends GameObject
     private ChainText chainText = null;
     private GameScoreText gameScoreText = null;
     private GameOverText gameOverText = null;
+    private RetryController retryController = null;
+
     // ぷよが削除後の移動中か
     private boolean isPuyoMovingAgain = false;
     private int chainNum = 0;
@@ -36,8 +40,14 @@ public class ObjMap extends GameObject
         posY = 82;
     }
 
-    /** 初期化 */
-    public void init()
+    /** 再スタート */
+    public void restart()
+    {
+        gameManager.init();
+    }
+
+    /** オブジェクト作成 */
+    public void create()
     {
         puyoCreator = new PuyoCreator(this, posX, posY);
         gameManager.insertGameObject(puyoCreator);
@@ -49,9 +59,44 @@ public class ObjMap extends GameObject
 
         gameScoreText = new GameScoreText();
         gameManager.insertGameObject(gameScoreText);
-
+        
         gameOverText = new GameOverText();
         gameManager.insertGameObject(gameOverText);
+        
+        retryController = new RetryController();
+        gameManager.insertGameObject(retryController);
+    }
+
+    /** 初期化 */
+    public void init()
+    {
+        Timer timer = new Timer();
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                // 操作用のぷよ、Next用ぷよ再生成
+                puyoCreator.CreatePuyo();
+                puyoCreator.CreatePuyo();
+                puyoCreator.CreatePuyo();
+                timer.cancel();
+            }
+        };
+
+        // 画面内のぷよ削除
+        for (int y = 0; y < MAP_Y_NUM; y++) {
+            for (int x = 0; x < MAP_X_NUM; x++) {
+                deleteMapPuyo(x, y);
+            }
+        }
+
+        // 操作ぷよ、Next用ぷよ削除
+        var objects = gameManager.getGameObjects(ObjectType.Puyo);
+        for (var object : objects) {
+           gameManager.deleteGameObject(object);
+        }
+
+        // リトライぷよ再生成
+        timer.schedule(task, RETRYINTERVAL);
     }
 
     /** ぷよ移動後の更新処理 */
@@ -66,6 +111,10 @@ public class ObjMap extends GameObject
         {
             // ゲームオーバーテキスト表示
             gameOverText.setEnable(true);
+
+            // リトライ操作
+            retryController.setEnable(true);
+
             return;
         }
 

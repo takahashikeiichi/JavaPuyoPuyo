@@ -15,6 +15,11 @@ public class ControlText extends GameObject
         posY = 500;
     }
 
+    public void init()
+    {
+
+    }
+
     public void update()
     {
 

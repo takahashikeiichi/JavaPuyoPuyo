@@ -111,6 +111,11 @@ public class PuyoCreator extends GameObject
         StockPuyo();
     }
 
+    public void init() 
+    {
+
+    }
+
     public void update()
     {
 

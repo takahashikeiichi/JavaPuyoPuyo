@@ -78,4 +78,14 @@ public class GameManager
     {
         gameObjectList.remove(obj);
     }
+
+    /** ゲームオブジェクトを初期化する */
+    public void init() 
+    {
+        for (int i = 0; i < gameObjectList.size(); ++i)
+        {
+            GameObject obj = gameObjectList.get(i);
+            obj.init();
+        }
+    }
 }

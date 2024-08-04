@@ -21,6 +21,11 @@ public class GameOverText extends GameObject
         posY = 300;
     }
 
+    public void init()
+    {
+        isEnable = false;
+    }
+
     public void update()
     {
 
@@ -31,6 +36,7 @@ public class GameOverText extends GameObject
         if(isEnable)
         {
             textManager.drawString("GameOver", "Serif", Font.PLAIN, (int)posX, (int)posY, 50, Color.red);
+            textManager.drawString("R  : リトライ", "Serif", Font.PLAIN, (int)posX, (int)posY + 30, 30);
         }
     }
 }

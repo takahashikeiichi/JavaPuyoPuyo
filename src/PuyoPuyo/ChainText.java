@@ -27,6 +27,12 @@ public class ChainText extends GameObject
         chainText = interger.toString() + "連鎖!!!";
     } 
 
+    public void init() 
+    {
+        chainText = "";
+        chainNum = 0;
+    }
+
     public void update()
     {
 
